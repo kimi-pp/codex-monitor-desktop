@@ -28,7 +28,7 @@ Do not attach `state_5.sqlite`, rollout JSONL files, raw prompts, credential fil
 ## Requirements
 
 - Windows 10 or later.
-- Node.js 20 or later for development.
+- Node.js 22 or later for development and CI.
 - A local Codex installation with readable local session state for real monitoring.
 
 ## Development
