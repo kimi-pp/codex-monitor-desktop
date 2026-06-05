@@ -1,0 +1,100 @@
+{
+  "name": "codex-monitor-desktop",
+  "version": "0.1.0",
+  "description": "A Windows desktop app that visualizes local Codex agent activity as an animated office monitor.",
+  "author": "kimi-pp",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kimi-pp/codex-monitor-desktop.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kimi-pp/codex-monitor-desktop/issues"
+  },
+  "homepage": "https://github.com/kimi-pp/codex-monitor-desktop#readme",
+  "main": "dist-electron/electron/main.js",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:renderer": "vite --host 127.0.0.1",
+    "build": "tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.node.json --noEmit && vite build && tsc -p tsconfig.node.json",
+    "build:renderer": "vite build",
+    "build:electron": "tsc -p tsconfig.node.json",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.node.json --noEmit",
+    "qa:quick": "tsc -p tsconfig.app.json --noEmit && vite build",
+    "qa:urls": "node scripts/qa-urls.mjs",
+    "qa:facility-agent-only-assets": "node scripts/qa-facility-agent-only-assets.mjs",
+    "qa:facility-browser": "node scripts/qa-facility-browser.mjs",
+    "qa:treadmill-assets": "node scripts/qa-treadmill-assets.mjs",
+    "qa:treadmill-browser": "node scripts/qa-treadmill-browser.mjs",
+    "test:facility-actions": "node --no-warnings --experimental-strip-types scripts/test-facility-actions.mjs",
+    "test:facility-seats": "node --no-warnings --experimental-strip-types scripts/test-facility-seats.mjs",
+    "test:facility-scene-props": "node --no-warnings --experimental-strip-types scripts/test-facility-scene-props.mjs",
+    "test:facility-agent-only-assets": "node --no-warnings --experimental-strip-types scripts/test-facility-agent-only-assets.mjs",
+    "test:agent-walk-route": "node --no-warnings --experimental-strip-types scripts/test-agent-walk-route.mjs",
+    "test:agent-visual-session": "node --no-warnings --experimental-strip-types scripts/test-agent-visual-session.mjs",
+    "test:agent-walking-capacity": "node --no-warnings --experimental-strip-types scripts/test-agent-walking-capacity.mjs",
+    "test:agent-walk-assets": "node --no-warnings --experimental-strip-types scripts/test-agent-walk-assets.mjs",
+    "test:spritesheet-frame-playback": "node --no-warnings --experimental-strip-types scripts/test-spritesheet-frame-playback.mjs",
+    "test:agent-sheet-frame-boundaries": "node --no-warnings --experimental-strip-types scripts/test-agent-sheet-frame-boundaries.mjs",
+    "test:treadmill-assets": "node --no-warnings --experimental-strip-types scripts/test-treadmill-assets.mjs",
+    "test:packaged-asset-paths": "node scripts/test-packaged-asset-paths.mjs",
+    "test:idle-behavior-reroll": "node --no-warnings --experimental-strip-types scripts/test-idle-behavior-reroll.mjs",
+    "test:facility-redo-candidates": "node scripts/test-facility-redo-candidates.mjs",
+    "test:debug-idle-behaviors": "node --no-warnings --experimental-strip-types scripts/test-debug-idle-behaviors.mjs",
+    "test:codex-project-scope": "node --no-warnings --experimental-strip-types scripts/test-codex-project-scope.mjs",
+    "test:codex-resident-agent-registry": "node --no-warnings --experimental-strip-types scripts/test-codex-resident-agent-registry.mjs",
+    "test:codex-runtime-status": "node --no-warnings --experimental-strip-types scripts/test-codex-runtime-status.mjs",
+    "test:codex-provider-privacy": "npx tsc -p tsconfig.node.json && node scripts/test-codex-provider-privacy.mjs",
+    "test:public-repo-boundary": "node scripts/test-public-repo-boundary.mjs",
+    "test:layout-debug-metrics": "node --no-warnings --experimental-strip-types scripts/test-layout-debug-metrics.mjs",
+    "dist": "tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.node.json --noEmit && vite build && tsc -p tsconfig.node.json && electron-builder --win portable",
+    "dist:installer": "tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.node.json --noEmit && vite build && tsc -p tsconfig.node.json && electron-builder --win nsis"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.4.1",
+    "lucide-react": "^0.468.0",
+    "pixi.js": "^8.8.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.17",
+    "@types/react-dom": "^18.3.5",
+    "electron": "^33.3.1",
+    "electron-builder": "^25.1.8",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7"
+  },
+  "build": {
+    "appId": "com.codex.monitor.desktop",
+    "productName": "Codex Monitor Desktop",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "portable": {
+      "artifactName": "${productName}-${version}-portable.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}

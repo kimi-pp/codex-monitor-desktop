@@ -1,0 +1,22 @@
+node_modules/
+dist/
+dist-electron/
+release/
+artifacts/
+tmp/
+.superpowers/
+.codex/
+agents/
+.vite/
+*.log
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+
+# Local Codex collaboration state, not public product source.
+Agent.md
+NEXT_THREAD_HANDOFF.md
+docs/subagent-registry.md
+docs/superpowers/
+public/assets/generated/screen-animation-review/
