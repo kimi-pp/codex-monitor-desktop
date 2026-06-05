@@ -41,6 +41,7 @@ assert.doesNotMatch(readme, /first version uses a mock status provider/i);
 assert.match(readme, /Does not read `.codex\/auth\.json`/);
 assert.match(readme, /Project selector/);
 assert.match(readme, /Six runtime states/);
+assert.match(readme, /Node\.js 22 or later/);
 assert.match(license, /MIT License/);
 
 for (const command of [
